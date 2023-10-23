@@ -12,3 +12,21 @@ def compress(data):
             current_code = symbol
     result.append(dictionary[current_code])
     return result
+def decompress(compressed_data):
+    dictionary = {i: chr(i) for i in range(256)}
+    next_code = 256
+    result = [compressed_data[0]]
+    w = chr(compressed_data[0])
+    for k in compressed_data[1:]:
+        if k in dictionary:
+            entry = dictionary[k]
+        elif k == next_code:
+            entry = w + w[0]
+        else:
+            raise ValueError("Bad compressed k: %d" % k)
+        result.append(entry)
+        dictionary[next_code] = w + entry[0]
+        next_code += 1
+        w = entry
+    return ''.join(result)
+
