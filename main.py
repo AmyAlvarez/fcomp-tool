@@ -29,4 +29,12 @@ def decompress(compressed_data):
         next_code += 1
         w = entry
     return ''.join(result)
+if __name__ == "__main__":
+    original_data = "TOBEORNOTTOBEORTOBEORNOT"
+    compressed_data = compress(original_data)
+    decompressed_data = decompress(compressed_data)
+    
+    print("Original Data: ", original_data)
+    print("Compressed Data: ", compressed_data)
+    print("Decompressed Data: ", decompressed_data)
 
